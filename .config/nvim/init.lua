@@ -12,6 +12,7 @@ vim.cmd([[Plug 'L3MON4D3/LuaSnip']])
 vim.cmd([[Plug 'rafamadriz/friendly-snippets']])
 vim.cmd([[Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}]])
 vim.cmd([[Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.5' }]])
+vim.cmd([[Plug 'nvim-lua/plenary.nvim']])
 vim.cmd('call plug#end()')
 
 vim.cmd('syntax on')
