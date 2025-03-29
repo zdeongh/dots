@@ -69,36 +69,18 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 })
 
 require("mason").setup()
-require("mason-lspconfig").setup()
 
-local lspconfig = require("lspconfig")
-
--- Enable some language servers with the additional completion capabilities offered by nvim-cmp
-local servers = { "csharp_ls", "rust_analyzer", "clangd" }
-for _, lsp in ipairs(servers) do
-    lspconfig[lsp].setup({
-        -- on_attach = my_custom_on_attach,
-        capabilities = capabilities,
-        settings = {
-            Lua = {
-                diagnostics = {
-                    globals = { "vim" }, -- Add 'vim' to the list of recognized globals
-                },
-            },
-        },
-    })
-end
-
-require'lspconfig'.rust_analyzer.setup{
-    settings = {
-      ['rust-analyzer'] = {
-        diagnostics = {
-          enable = false;
-        }
-      }
-    }
-  }
-
+vim.lsp.config.clangd = {
+  cmd = { 'clangd', '--background-index' },
+  root_markers = { 'compile_commands.json', 'compile_flags.txt' },
+  filetypes = { 'c', 'cpp' },
+}
+vim.lsp.config.csharp_ls = {
+  cmd = { 'csharp-ls' },
+  root_markers = { 'project.json', '*.csproj', '*.sln' },
+  filetypes = { 'cs' },
+}
+vim.lsp.enable({ 'csharp_ls', 'clangd' })
 
 -- luasnip setup
 local luasnip = require("luasnip")
@@ -106,7 +88,6 @@ local luasnip = require("luasnip")
 require("luasnip.loaders.from_vscode").lazy_load({
     paths = { "C:\\Users\\daniel.zappala\\AppData\\Roaming\\Code\\User\\snippets" },
 })
-
 
 -- Set up rg as the default grepprg
 vim.api.nvim_exec(
