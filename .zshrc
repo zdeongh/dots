@@ -5,6 +5,7 @@ SAVEHIST=10000
 alias vim="nvim"
 alias ls="ls -la"
 alias repos="cd ~/repos"
+alias notes="vim ~/repos/notes"
 alias fzf="fzf | xargs nvim"
 eval "$(starship init zsh)"
 
