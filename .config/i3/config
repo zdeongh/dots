@@ -215,7 +215,7 @@ bar {
     font pango:Hack,12
     position top
     i3bar_command i3bar --transparency
-    status_command ~/.cargo/bin/i3status-rs ~/.config/i3rs.toml
+    status_command i3status-rs ~/.config/i3rs.toml
     colors {
         separator #666666
         background #00000000
@@ -230,7 +230,7 @@ bar {
 exec --no-startup-id xset s off && xset -dpms
 exec --no-startup-id setxkbmap -layout de
 
-exec --no-startup-id picom -b
+# exec --no-startup-id picom -b
 exec --no-startup-id feh --bg-center '/home/daniel/Pictures/wp.png'
 
 exec --no-startup-id exec blueman-applet
@@ -256,3 +256,4 @@ assign [class="discord"] $ws3
 exec --no-startup-id exec discord
 exec --no-startup-id exec firefox
 #exec --no-startup-id exec obsidian 
+
