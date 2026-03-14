@@ -1,26 +1,64 @@
 return
 {
+{
+    "mason-org/mason-lspconfig.nvim",
+    opts = {},
+    dependencies = {
+        { "mason-org/mason.nvim", opts = {} },
+        "neovim/nvim-lspconfig",
+    },
+},
+    {
+  "ibhagwan/fzf-lua",
+  -- optional for icon support
+  dependencies = { "nvim-tree/nvim-web-devicons" },
+  -- or if using mini.icons/mini.nvim
+  -- dependencies = { "nvim-mini/mini.icons" },
+  opts = {}
+},
+    {
+  'saghen/blink.indent',
+  --- @module 'blink.indent'
+  --- @type blink.indent.Config
+  -- opts = {},
+},
+    { 'andymass/vim-matchup', event = 'VimEnter' },
+        {
+        "neovim/nvim-lspconfig",
+    },
+    {
+		'stevearc/conform.nvim',
+		opts = {},
+    },
+	{
+    'windwp/nvim-autopairs',
+    event = "InsertEnter",
+    config = true -- Führt require('nvim-autopairs').setup() automatisch aus
+},
 
-    { "catppuccin/nvim",             name = "catppuccin",                                              priority = 1000 },
+    { 'kevinhwang91/nvim-ufo', dependencies = 'kevinhwang91/promise-async' },
+    { "catppuccin/nvim",       name = "catppuccin",                        priority = 1000 },
 
     {
         'nvim-lualine/lualine.nvim',
         dependencies = { 'nvim-tree/nvim-web-devicons' }
     },
-
     {
-        'nvim-telescope/telescope.nvim', tag = '0.1.8',
+        "kylechui/nvim-surround",
+        version = "^3.0.0", -- Use for stability; omit to use `main` branch for the latest features
+        event = "VeryLazy",
+        config = function()
+            require("nvim-surround").setup({
+                -- Configuration here, or leave empty to use defaults
+            })
+        end
     },
 
-    {
-        "L3MON4D3/LuaSnip",
-        -- follow latest release.
-        version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
-        -- install jsregexp (optional!).
-        build = "make install_jsregexp"
-    },
-
-    { "rafamadriz/friendly-snippets" },
+	
+	{
+  "L3MON4D3/LuaSnip",
+  dependencies = { "rafamadriz/friendly-snippets" },
+},
 
     {
         'saghen/blink.cmp',
@@ -66,24 +104,5 @@ return
     },
     {
         "williamboman/mason.nvim",
-    },
-    { -- Highlight, edit, and navigate code
-        'nvim-treesitter/nvim-treesitter',
-        build = ':TSUpdate',
-        main = 'nvim-treesitter.configs', -- Sets main module to use for opts
-        -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
-        opts = {
-            ensure_installed = { 'c_sharp' },
-            -- Autoinstall languages that are not installed
-            auto_install = true,
-            highlight = {
-                enable = true,
-                -- Some languages depend on vim's regex highlighting system (such as Ruby) for indent rules.
-                --  If you are experiencing weird indenting issues, add the language to
-                --  the list of additional_vim_regex_highlighting and disabled languages for indent.
-                additional_vim_regex_highlighting = { 'ruby' },
-            },
-            indent = { enable = true, disable = { 'ruby' } },
-        },
     },
 }
