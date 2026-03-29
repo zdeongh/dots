@@ -1,0 +1,8 @@
+theme = Catppuccin Frappe
+window-decoration = false
+confirm-close-surface = false
+cursor-style = block
+cursor-style-blink = false
+shell-integration-features = no-cursor
+font-family = "Hack Nerd Font Mono"
+font-size = 12
